@@ -1,0 +1,10 @@
+(library
+  (name day01)
+  (public_name aoc.day01)
+  (libraries utils)
+  (modules day01))
+
+(test
+  (name day01_test)
+  (modules day01_test)
+  (libraries day01 alcotest))
