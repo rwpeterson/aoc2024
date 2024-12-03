@@ -12,6 +12,7 @@ let solve_day day example =
   match day with
   | 1 -> Day01.solve (get_input_file day example)
   | 2 -> Day02.solve (get_input_file day example)
+  | 3 -> Day03.solve (get_input_file day example)
   | n -> Printf.printf "Day %d not implemented yet\n" n
 
 let () =
