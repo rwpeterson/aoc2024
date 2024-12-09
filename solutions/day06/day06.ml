@@ -53,6 +53,12 @@ let make_map s =
   | None -> failwith "has to have a starting column" in
   { m = m; i = i; j = j; max_rpts = ((0, 0), 0) }
 
+let deep_copy (a : 'a array array) =
+  Array.init (Array.length a) (fun j -> Array.copy a.(j))
+
+let copy_map m =
+  { m = deep_copy m.m; i = m.i; j = m.j; max_rpts = m.max_rpts }
+
 let turn_right m =
   match m.m.(m.j).(m.i) with
   | Right () -> failwith "can't be inside an obstruction"
@@ -144,7 +150,7 @@ let part2 input =
   let num_cyclic = ref 0 in
   for ii = 0 to x - 1 do
     for jj = 0 to y - 1 do
-      let m = make_map s in
+      let m = copy_map m' in
       match m.m.(jj).(ii) with
       | Right _ | Left { visits = _; guard = None } -> begin
         m.m.(jj).(ii) <- Right ();
